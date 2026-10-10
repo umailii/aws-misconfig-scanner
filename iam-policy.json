@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ScannerReadOnly",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation",
+        "s3:GetBucketAcl",
+        "s3:GetBucketPolicyStatus",
+        "s3:GetBucketPublicAccessBlock",
+        "ec2:DescribeSecurityGroups",
+        "iam:ListUsers",
+        "iam:GetLoginProfile",
+        "iam:ListMFADevices"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

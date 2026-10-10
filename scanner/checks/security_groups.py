@@ -45,14 +45,16 @@ def _classify(permission: dict) -> tuple[Severity, str] | None:
     if low is None or high is None:
         return Severity.HIGH, f"protocol {protocol} open to the internet"
 
+    port_text = f"port {low}" if low == high else f"ports {low}-{high}"
+
     exposed = [name for port, name in SENSITIVE_PORTS.items() if low <= port <= high]
     if exposed:
-        return Severity.CRITICAL, f"{', '.join(exposed)} (ports {low}-{high}) open to the internet"
+        return Severity.CRITICAL, f"{', '.join(exposed)} ({port_text}) open to the internet"
 
     if low == high and low in WEB_PORTS:
-        return Severity.LOW, f"web port {low} open to the internet"
+        return Severity.LOW, f"web {port_text} open to the internet"
 
-    return Severity.HIGH, f"ports {low}-{high} open to the internet"
+    return Severity.HIGH, f"{port_text} open to the internet"
 
 
 def check_security_groups(session, region: str) -> list[Finding]:
