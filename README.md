@@ -16,7 +16,7 @@ The scanner only makes read calls. It never changes anything in your account.
 ## Install
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/umailii/aws-misconfig-scanner.git
 cd aws-misconfig-scanner
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
